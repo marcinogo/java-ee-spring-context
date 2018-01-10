@@ -19,16 +19,16 @@ public class ConverterApplication {
             if (args.length == 1) {
                 simpleCsvConverter.convert(file);
             } else if (args.length > 1) {
-                OutputFormat outputFormat;
+                OutputFormat outputFormat = null;
                 final Integer FORMAT_ARG = 0;
 
                 if (args[FORMAT_ARG].equals("json")) {
                     outputFormat = OutputFormat.JSON;
-                    simpleCsvConverter.convert(file, outputFormat);
                 } else if (args[FORMAT_ARG].equals("xml")) {
                     outputFormat = OutputFormat.XML;
-                    simpleCsvConverter.convert(file, outputFormat);
                 }
+
+                simpleCsvConverter.convert(file, outputFormat);
             }
         }
     }

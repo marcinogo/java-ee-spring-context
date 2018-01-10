@@ -1,6 +1,7 @@
 package com.codecool;
 
 import com.codecool.model.OutputFormat;
+import com.codecool.service.SimpleCsvConverter;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,17 +14,20 @@ public class ConverterApplication {
             final Integer PATH_ARG = args.length - 1;
             Path CSVPath = Paths.get(args[PATH_ARG]);
 
-            OutputFormat outputFormat;
+            SimpleCsvConverter simpleCsvConverter = new SimpleCsvConverter();
 
             if (args.length == 1) {
-                outputFormat = OutputFormat.TABLE;
+                simpleCsvConverter.convert(CSVPath.toFile());
             } else if (args.length > 1) {
+                OutputFormat outputFormat;
                 final Integer FORMAT_ARG = 0;
 
                 if (args[FORMAT_ARG].equals("json")) {
                     outputFormat = OutputFormat.JSON;
+                    simpleCsvConverter.convert(CSVPath.toFile(), outputFormat);
                 } else if (args[FORMAT_ARG].equals("xml")) {
                     outputFormat = OutputFormat.XML;
+                    simpleCsvConverter.convert(CSVPath.toFile(), outputFormat);
                 }
             }
         }

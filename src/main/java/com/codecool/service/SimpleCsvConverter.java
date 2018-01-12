@@ -4,9 +4,11 @@ import com.codecool.dao.FileReader;
 import com.codecool.factory.OutputFormatterFactory;
 import com.codecool.model.OutputFormat;
 import com.codecool.view.OutputFormatter;
+import org.springframework.stereotype.Service;
 
 import java.nio.file.Path;
 
+@Service
 public class SimpleCsvConverter {
     private FileReader fileReader;
     private OutputFormatterFactory outputFormatterFactory;

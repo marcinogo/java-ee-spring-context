@@ -13,7 +13,7 @@ public class TableOutputFormatter implements OutputFormatter {
 
         PrettyTable table = new PrettyTable(headers);
 
-        for (int i = 1; i < data.size(); i++) {
+        for (int i = 0; i < data.size(); i++) {
             List<String> valueList = new ArrayList<>();
             String[] keyArray = data.get(i).keySet().toArray(new String[data.get(i).keySet().size()]);
 

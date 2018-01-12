@@ -13,7 +13,7 @@ public class XmlOutputFormatter implements OutputFormatter {
         XStream xStream = new XStream();
         xStream.alias("csv data", List.class);
         xStream.alias("row", LinkedHashMap.class);
-        NamedMapConverter namedMapConverter = new NamedMapConverter(xStream.getMapper(), "entry",
+        NamedMapConverter namedMapConverter = new NamedMapConverter(xStream.getMapper(), "data",
                 "key", String.class, "value", String.class,
                 true, true, xStream.getConverterLookup());
         xStream.registerConverter(namedMapConverter);

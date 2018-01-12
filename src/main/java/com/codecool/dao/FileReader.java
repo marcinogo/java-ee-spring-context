@@ -1,15 +1,36 @@
 package com.codecool.dao;
 
+import com.opencsv.CSVReader;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class FileReader {
     public List<Map<String, String>> readData(Path file) {
         List<Map<String, String>> csvData = new ArrayList<>();
-        System.out.println("Just print to console some text, for now ;)");
+
+        try (
+            Reader reader = Files.newBufferedReader(file);
+            CSVReader csvReader = new CSVReader(reader)
+        ) {
+            String[] line;
+
+            while ((line = csvReader.readNext()) != null) {
+
+                Map<String, String> csvRow = new LinkedHashMap<>();
+                for (int i = 0; i < line.length; i++) {
+                    csvRow.put("col_" + i, line[i]);
+                }
+                csvData.add(csvRow);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(0);
+        }
 
         return csvData;
     }

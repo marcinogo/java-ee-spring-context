@@ -2,6 +2,7 @@ package com.codecool;
 
 import com.codecool.model.OutputFormat;
 import com.codecool.service.SimpleCsvConverter;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,7 +15,9 @@ public class ConverterApplication {
             final Integer PATH_ARG = args.length - 1;
             Path file = Paths.get(args[PATH_ARG]);
 
-            SimpleCsvConverter simpleCsvConverter = new SimpleCsvConverter();
+            ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+
+            SimpleCsvConverter simpleCsvConverter = (SimpleCsvConverter) ctx.getBean("simpleCsvConverter");
 
             if (args.length == 1) {
                 simpleCsvConverter.convert(file);

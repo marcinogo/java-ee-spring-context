@@ -1,11 +1,22 @@
 package com.codecool.view;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.List;
 import java.util.Map;
 
 public class JsonOutputFormatter implements OutputFormatter {
     @Override
     public void printToConsole(List<Map<String, String>> data) {
-        System.out.println("Some random CSV converted to JSON");
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            String jsonResult = mapper.writerWithDefaultPrettyPrinter()
+                    .writeValueAsString(data);
+            System.out.println(jsonResult);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            System.exit(0);
+        }
     }
 }

@@ -26,6 +26,9 @@ public class ConverterApplication {
                     outputFormat = OutputFormat.JSON;
                 } else if (args[FORMAT_ARG].equals("xml")) {
                     outputFormat = OutputFormat.XML;
+                } else {
+                    System.out.println("No such output format define");
+                    System.exit(0);
                 }
 
                 simpleCsvConverter.convert(file, outputFormat);

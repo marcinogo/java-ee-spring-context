@@ -29,7 +29,7 @@ public class FileReader {
                 csvData.add(csvRow);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Can't read given file");
             System.exit(0);
         }
 
